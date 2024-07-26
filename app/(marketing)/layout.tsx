@@ -3,9 +3,9 @@ import Navbar from "@/components/marketing/Navbar";
 
 const Marketinglayout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <main className="max-w-7xl mx-auto h-screen flex flex-col w-full justify-between px-8">
+    <main className="h-screen flex flex-col w-full justify-between">
       <Navbar />
-      {children}
+      <div className="w-full max-w-7xl mx-auto px-6">{children}</div>
       <Footer />
     </main>
   );

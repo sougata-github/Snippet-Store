@@ -1,87 +1,73 @@
-import Link from "next/link";
+"use client";
 
-import { PiBracketsCurlyBold } from "react-icons/pi";
+import Link from "next/link";
 
 import { Button } from "../ui/button";
 
-import {
-  ClerkLoaded,
-  ClerkLoading,
-  SignedIn,
-  SignedOut,
-  SignInButton,
-  SignUpButton,
-  UserButton,
-} from "@clerk/nextjs";
+import { ChevronRight } from "lucide-react";
 
-import LoaderComponent from "../LoaderComponent";
+import { motion } from "framer-motion";
 
-import { ArrowRight } from "lucide-react";
+import { SignedIn, SignedOut } from "@clerk/nextjs";
 
 const Navbar = () => {
   return (
-    <header className="py-8">
-      <nav className="flex justify-between items-center">
-        {/* Logo */}
-        <div className="flex gap-4 items-center">
-          <Link
-            href="/"
-            className="rounded-lg w-12 h-12 bg-blue flex items-center justify-center max-sm:h-8 max-sm:w-8"
-          >
-            <PiBracketsCurlyBold className="h-8 w-8 text-white max-sm:h-4 max-sm:w-4" />
-          </Link>
+    <motion.header
+      className="py-4 border-b-2 w-full"
+      initial={{
+        opacity: 0,
+        y: -5,
+      }}
+      animate={{
+        opacity: 100,
+        y: 0,
+        transition: {
+          delay: 0.4,
+          ease: "easeIn",
+        },
+      }}
+    >
+      <nav className="flex justify-between items-center mx-auto max-w-7xl px-6">
+        <Link href="/" className="text-black/80 text-lg font-semibold">
+          <span className="text-primary">Snippet</span> Store
+        </Link>
 
-          <h1 className="text-2xl font-bold max-sm:text-xl">
-            <span className="text-blue">Snippet</span> Store
-          </h1>
-        </div>
+        {/* {Buttons} */}
+        <div className="flex items-center gap-2">
+          <SignedOut>
+            <Link href="/sign-in">
+              <Button
+                variant="ghost"
+                className="text-[15px] text-black/80 font-medium hover:bg-transparent"
+              >
+                Log in
+              </Button>
+            </Link>
+          </SignedOut>
 
-        {/* Buttons */}
-
-        <div>
           <SignedIn>
-            <ClerkLoading>
-              <LoaderComponent />
-            </ClerkLoading>
-            <ClerkLoaded>
-              <UserButton
-                appearance={{
-                  elements: {
-                    avatarBox: "h-10 w-10 max-sm:h-8 max-sm:w-8",
-                  },
-                  variables: {
-                    colorPrimary: "#1658ff",
-                  },
-                }}
-              />
-            </ClerkLoaded>
+            <Link href="/my-snippets" className="group">
+              <Button
+                variant="ghost"
+                className="text-[15px] text-black/80 font-medium hover:bg-transparent"
+              >
+                Enter{" "}
+                <ChevronRight className="group-hover:translate-x-1 h-4 w-4 ml-1 transition-all" />
+              </Button>
+            </Link>
           </SignedIn>
 
           <SignedOut>
-            <ClerkLoading>
-              <LoaderComponent />
-            </ClerkLoading>
-            <ClerkLoaded>
-              <SignInButton mode="modal">
-                <Button className="button-base-styles bg-blue text-white">
-                  Log In
-                </Button>
-              </SignInButton>
-            </ClerkLoaded>
+            <Link href="/sign-up">
+              <Button className="text-[15px] text-black/80 font-medium bg-accent hover:bg-accent/50">
+                Sign Up
+              </Button>
+            </Link>
           </SignedOut>
         </div>
       </nav>
-    </header>
+    </motion.header>
   );
 };
 
 export default Navbar;
-
-{
-  /* <Link href="/my-snippets">
-<Button className="button-base-styles bg-blue text-white max-sm:hidden">
-  Enter{" "}
-  <ArrowRight className="h-4 w-5 text-white ml-2 mt-[0.5px]" />
-</Button>
-</Link> */
-}

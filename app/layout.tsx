@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 
-import { Poppins } from "next/font/google";
+import { Inter, Roboto } from "next/font/google";
 
 import "./globals.css";
 
@@ -8,9 +8,8 @@ import { ClerkProvider } from "@clerk/nextjs";
 
 import { cn } from "@/lib/utils";
 
-const poppins = Poppins({
+const inter = Inter({
   subsets: ["latin"],
-  variable: "--font-poppins",
   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
 });
 
@@ -28,7 +27,7 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <html lang="en">
-        <body className={cn("bg-bg", poppins.className)}>{children}</body>
+        <body className={cn("bg-background", inter.className)}>{children}</body>
       </html>
     </ClerkProvider>
   );
