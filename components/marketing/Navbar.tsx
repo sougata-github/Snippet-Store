@@ -10,10 +10,13 @@ import { motion } from "framer-motion";
 
 import { SignedIn, SignedOut } from "@clerk/nextjs";
 
+import { FaGithub } from "react-icons/fa";
+import { FaXTwitter } from "react-icons/fa6";
+
 const Navbar = () => {
   return (
     <motion.header
-      className="py-4 border-b-2 w-full"
+      className="py-2 border-gray-200 border-[0.5px] w-full backdrop-blur-md sticky top-0 left-0 right-0 z-[9999]"
       initial={{
         opacity: 0,
         y: -5,
@@ -34,6 +37,16 @@ const Navbar = () => {
 
         {/* {Buttons} */}
         <div className="flex items-center gap-2">
+          <div className="flex items-center gap-6 max-lg:hidden">
+            <Link href="/">
+              <FaGithub className="h-4 w-4 text-black/80" />
+            </Link>
+
+            <Link href="/">
+              <FaXTwitter className="h-4 w-4 text-black/80" />
+            </Link>
+          </div>
+
           <SignedOut>
             <Link href="/sign-in">
               <Button
