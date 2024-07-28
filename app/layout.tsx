@@ -7,6 +7,7 @@ import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
 
 import { cn } from "@/lib/utils";
+import PageTransition from "@/components/animations/PageTransition";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -27,7 +28,9 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <html lang="en">
-        <body className={cn("bg-background", inter.className)}>{children}</body>
+        <body className={cn("bg-background-light", inter.className)}>
+          <PageTransition>{children}</PageTransition>
+        </body>
       </html>
     </ClerkProvider>
   );

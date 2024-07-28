@@ -4,19 +4,19 @@ import Link from "next/link";
 
 import { Button } from "../ui/button";
 
-import { ChevronRight } from "lucide-react";
-
 import { motion } from "framer-motion";
-
-import { SignedIn, SignedOut } from "@clerk/nextjs";
 
 import { FaGithub } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 
+import { ChevronRight } from "lucide-react";
+
+import { SignedIn, SignedOut } from "@clerk/nextjs";
+
 const Navbar = () => {
   return (
     <motion.header
-      className="py-2 border-gray-200 border-[0.5px] w-full backdrop-blur-md sticky top-0 left-0 right-0 z-[9999]"
+      className="py-2 border-b-[0.5px] border-gray-200 w-full backdrop-blur-md sticky top-0 left-0 right-0 z-[9999]"
       initial={{
         opacity: 0,
         y: -5,
@@ -36,14 +36,14 @@ const Navbar = () => {
         </Link>
 
         {/* {Buttons} */}
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-4">
           <div className="flex items-center gap-6 max-lg:hidden">
-            <Link href="/">
-              <FaGithub className="h-4 w-4 text-black/80" />
+            <Link target="_blank" href="https://github.com/sougata-github">
+              <FaGithub className="h-[19px] w-[19px] text-black/80" />
             </Link>
 
-            <Link href="/">
-              <FaXTwitter className="h-4 w-4 text-black/80" />
+            <Link target="_blank" href="https://x.com/sougata_x">
+              <FaXTwitter className="h-[19px] w-[19px] text-black/80" />
             </Link>
           </div>
 
@@ -72,7 +72,7 @@ const Navbar = () => {
 
           <SignedOut>
             <Link href="/sign-up">
-              <Button className="text-[15px] text-black/80 font-medium bg-accent hover:bg-accent/50">
+              <Button className="text-[15px] text-white font-medium bg-primary">
                 Sign Up
               </Button>
             </Link>
